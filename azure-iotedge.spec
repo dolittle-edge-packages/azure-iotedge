@@ -7,12 +7,12 @@
 
 Name     : azure-iotedge
 Version  : 1.0.6
-Release  : 1
+Release  : 3
 License  : MIT
 Summary  : Azure IoT Edge Security Daemon
 URL      : https://github.com/azure/iotedge
-Source0  : https://github.com/dolittle-edge/azure-iotedge-clearlinux-build/releases/download/build-v1.0.6-29200/iotedge-1.0.6-29200.x86_64.tar.gz
-Source1  : https://github.com/dolittle-edge/azure-iotedge-clearlinux-build/releases/download/build-v1.0.6-29200/libiothsm-std-1.0.6-29200.x86_64.tar.gz
+Source0  : https://github.com/dolittle-edge/azure-iotedge-clearlinux-build/releases/download/build-v1.0.6-29950/iotedge-1.0.6-29950.x86_64.tar.gz
+Source1  : https://github.com/dolittle-edge/azure-iotedge-clearlinux-build/releases/download/build-v1.0.6-29950/libiothsm-std-1.0.6-29950.x86_64.tar.gz
 Requires : docker
 
 %description
@@ -30,8 +30,8 @@ This package contains the IoT Edge daemon and CLI tool.
 %build
 
 %install
-rm -r /builddir/build/BUILDROOT/azure-iotedge-1.0.6-1.x86_64
-cp -r /builddir/build/BUILD/azure-iotedge-1.0.6 /builddir/build/BUILDROOT/azure-iotedge-1.0.6-1.x86_64
+rm -r /builddir/build/BUILDROOT/azure-iotedge-1.0.6-3.x86_64
+cp -r /builddir/build/BUILD/azure-iotedge-1.0.6 /builddir/build/BUILDROOT/azure-iotedge-1.0.6-3.x86_64
 
 %post
 %systemd_post iotedge.service
@@ -55,12 +55,14 @@ cp -r /builddir/build/BUILD/azure-iotedge-1.0.6 /builddir/build/BUILDROOT/azure-
 
 # bins
 /usr/bin/iotedge
-/usr/bin/iotedged
+/usr/bin/iotedge-create-config
 /usr/bin/iotedge-install
+/usr/bin/iotedged
 
 # config
 /usr/share/defaults/iotedge/config.yaml
 /usr/share/defaults/iotedge/logrotate.d/iotedge
+/usr/share/defaults/etc/profile.d/60-iotedge.sh
 
 # man
 /usr/share/man/man1/iotedge.1.gz
@@ -69,6 +71,7 @@ cp -r /builddir/build/BUILD/azure-iotedge-1.0.6 /builddir/build/BUILDROOT/azure-
 # systemd
 /usr/lib/systemd/system/iotedge.service
 /usr/lib/systemd/system/iotedge-install.service
+/usr/lib/systemd/system/docker.service.d/60-iotedge-runtime.conf
 
 %doc /usr/share/doc/iotedge/LICENSE.gz
 %doc /usr/share/doc/iotedge/ThirdPartyNotices.gz
