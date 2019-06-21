@@ -1,0 +1,10 @@
+# [TITLE]: azure-iotedge
+# [DESCRIPTION]: The Azure IoTEdge packages
+# [STATUS]: Active
+# [CAPABILITIES]:
+# [TAGS]: Dolittle IoT Edge
+# [MAINTAINER]: Jakob Høgenes <jakob@dolittle.com>
+
+include(containers-basic)
+
+azure-iotedge
